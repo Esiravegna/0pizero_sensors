@@ -54,7 +54,7 @@ class MQ2(object):
     def MQPercentage(self):
         val = {}
         read = self.MQRead(self.sensor)
-        val["GAS_LPG"]  = self.MQGetGasPercentage(read/self.Ro, self.GAS_LPG)
+        val["LPG"]  = self.MQGetGasPercentage(read/self.Ro, self.GAS_LPG)
         val["CO"]       = self.MQGetGasPercentage(read/self.Ro, self.GAS_CO)
         val["SMOKE"]    = self.MQGetGasPercentage(read/self.Ro, self.GAS_SMOKE)
         return val
