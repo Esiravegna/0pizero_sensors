@@ -11,4 +11,4 @@ setting2level = {
 	'WARNING': levels.WARNING
 }
 
-quick_setup(min_level=setting2level[settings['OPI_ZERO_SENSORS_LOGLEVEL']])
+quick_setup(min_level=setting2level[settings['OPI_ZERO_SENSORS_LOGLEVEL']], file = settings['OPI_ZERO_SENSORS_LOGFILE'])

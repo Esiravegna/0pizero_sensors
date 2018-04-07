@@ -28,7 +28,7 @@ class SensorsController(object):
         self.temperature = TemperatureSensor(pin=settings['OPI_ZERO_SENSORS_PIN_DHT'])
         self.movement = PIRSensor(pin=settings['OPI_ZERO_SENSORS_PIN_PIR'])
         self.mqtt = MQTTClient()
-        self.current_motion = 0
+        self.current_motion = -1
         self.current_t = False
         self.current_h = False
         self.thread_motion = threading.Timer(settings['READ_MOTION_INTERVAL'], self.send_motion_reading)
@@ -49,14 +49,14 @@ class SensorsController(object):
                 while True:
                     pass
             except KeyboardInterrupt:
-                break
+                return False
 
     def send_gas_reading(self):
         log.debug("Sending gas data")
         mq2_reading = self.mq2.MQPercentage()
         reading = mq2_reading.copy()
         reading.update(self.mq135.MQPercentage(self.current_h, self.current_h))
-        for key, value in mq2_reading.items():
+        for key, value in reading.items():
             self.mqtt.publish(key, value)
 
     def send_temperature_reading(self):
@@ -72,5 +72,5 @@ class SensorsController(object):
         reading = self.movement.motion
         if reading != self.current_motion:
             log.debug("Sending motion data")
+            self.mqtt.publish('PIR',reading)
             self.current_motion = reading
-            self.mqtt.publish('PIR', self.current_motion)

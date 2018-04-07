@@ -16,7 +16,7 @@ class MQ2(object):
     CALIBARAION_SAMPLE_TIMES     = 50       # define how many samples you are going to take in the calibration phase
     CALIBRATION_SAMPLE_INTERVAL  = 500      # define the time interal(in milisecond) between each samples in the
                                             # cablibration phase
-    READ_SAMPLE_INTERVAL         = 50       # define how many samples you are going to take in normal operation
+    READ_SAMPLE_INTERVAL         = 5      # define how many samples you are going to take in normal operation
     READ_SAMPLE_TIMES            = 200      # define the time interal(in milisecond) between each samples in 
                                             # normal operation
     ######################### Application Related Macros ######################

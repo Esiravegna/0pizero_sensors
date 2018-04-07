@@ -7,8 +7,6 @@ class PIRSensor(object):
 	def __init__(self, pin):
 		log.debug("Initializing PIR...")
 		self.pin = pin
-		gpio.setcfg(self.pin, gpio.OUTPUT)
-		gpio.output(self.pin, gpio.HIGH)
 		gpio.setcfg(self.pin, gpio.INPUT)
 		self.motion = False
 		self.last_update = False

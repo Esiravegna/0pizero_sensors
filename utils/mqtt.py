@@ -80,7 +80,7 @@ class MQTTClient(object):
         if not self.is_connected:
             log.error("Unable to send {}/{} {}, not connected".format(self.topic, subtopic, payload))
         else:
-            self.mqttc.publish("/{}/{}".format(self.topic, subtopic), payload, qos=0, retain=False)
+            self.mqttc.publish("/{}/{}".format(self.topic, subtopic), payload, qos=0, retain=True)
             result = True
         return result
 
