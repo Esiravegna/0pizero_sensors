@@ -1,0 +1,20 @@
+[Unit]
+Description=OrangePi Zero Sensors
+After=network.target
+
+[Service]
+Environment="OPI_ZERO_SENSORS_LOGLEVEL=DEBUG"
+Environment="OPI_ZERO_SENSORS_LOGFILE=/var/log/opzero_sensors.log"
+Environment="MQTT_SERVER=your_server"
+Environment="MQTT_TOPIC=YOUR_TOPIC"
+Environment="MQTT_PORT=YOUR_PORT"
+ExecStart=/usr/bin/python run.py start
+ExecStop=/usr/bin/python run.py stop
+WorkingDirectory=/srv/your/path/to/script
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target
