@@ -47,7 +47,7 @@ class MQ2(object):
                 
         log.debug("Calibrating...")
         self.Ro = self.MQCalibration(self.sensor)
-        log.debug("Calibration is done...\n")
+        log.debug("Calibration is done!")
         log.debug("Ro=%f kohm" % self.Ro)
     
     
@@ -55,7 +55,7 @@ class MQ2(object):
         val = {}
         read = self.MQRead(self.sensor)
         val["LPG"]  = self.MQGetGasPercentage(read/self.Ro, self.GAS_LPG)
-        val["CO"]       = self.MQGetGasPercentage(read/self.Ro, self.GAS_CO)
+        val["MONOXIDE"]       = self.MQGetGasPercentage(read/self.Ro, self.GAS_CO)
         val["SMOKE"]    = self.MQGetGasPercentage(read/self.Ro, self.GAS_SMOKE)
         return val
         

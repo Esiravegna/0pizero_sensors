@@ -13,8 +13,9 @@ class PIRSensor(object):
 		log.debug("...PIR initialized!")
 
 	def update(self):
-		log.debug("Reading PIR")
-		if gpio.input(self.pin):
+		reading = gpio.input(self.pin)
+		log.debug("Reading PIR : {}".format(reading))
+		if reading:
 			self.motion = 1
 		else:
 			self.motion = 0

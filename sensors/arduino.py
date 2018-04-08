@@ -19,11 +19,11 @@ class ArduinoGasSensor(object):
 		self.MQ135Value = False
 
 	def update(self, payload_size = 4):
-		log.debug("probing the sensor...")
+		#log.debug("probing the sensor...")
 		response = self.bus.read_i2c_block_data(self.address,0, payload_size)
 		self.MQ2Value = little_endian_byte_to_int(response[2:])
 		self.MQ135Value = little_endian_byte_to_int(response[:2])
-		log.debug("sensor.probed")
+		#log.debug("sensor.probed")
 
 
 

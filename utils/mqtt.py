@@ -14,7 +14,7 @@ class MQTTClient(object):
         self.topic = topic
         self.port = port
         self.host = server
-        self.lwt = "/{}/alive/".format(self.topic)
+        self.lwt = "/{}/alive".format(self.topic)
         self.is_connected = False
 
         # MQTT callbacks

@@ -148,11 +148,11 @@ class MQ135(object):
         return self.CORA * temperature * temperature - self.CORB * temperature + self.CORC - (humidity-33.)*self.CORD
 
     def getCorrectedResistance(self, resistance, temperature, humidity):
-        return float(resistance/self.getCorrectedResistance(temperature, humidity))
+        return float(resistance/self.getCorrectionFactor(temperature, humidity))
 
     def getCalibratedGasPPM(self, temperature, humidity, resistance, GAS):
-        return selg.gas_values[GAS]['SCALE_FACTOR'] * pow((self.getCorrectedResistance(resistance, temperature, humidity) / 
-            self.getCorrectedRZero(GAS , self.getCorrectedResistance(temperature, humidity))), -selg.gas_values[GAS]['EXPONENT'])
+        return self.gas_values[GAS]['SCALE_FACTOR'] * pow((self.getCorrectedResistance(resistance, temperature, humidity) / 
+            self.getCorrectedRZero(GAS , self.getCorrectedResistance(resistance, temperature, humidity))), -self.gas_values[GAS]['EXPONENT'])
 
 
 
