@@ -58,8 +58,8 @@ class MQTTClient(object):
         else:
             log.info("Broker connection lost. Retrying in 5s...")
             time.sleep(5)
-            # End of MQTT callbacks
-            # With approved
+            self.mqttc.connect(self.host, self.port, 60)
+        # End of MQTT callbacks
 
     def __enter__(self):
         return self
